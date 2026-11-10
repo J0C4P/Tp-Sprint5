@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { getAll, create, update, remove } from '../api/videojuegosApi'
+import { mensajeDeError } from '../api/errores'
 
 export function useVideojuegos() {
   const [videojuegos, setVideojuegos] = useState([])
@@ -17,11 +18,7 @@ export function useVideojuegos() {
         setVideojuegos(data)
       } catch (err) {
         if (axios.isCancel(err)) return
-        setError(
-          err.response
-            ? `El servidor respondió con un error (${err.response.status}).`
-            : 'No se pudo conectar con el servidor. Revisá tu conexión.'
-        )
+        setError(mensajeDeError(err))
       } finally {
         if (!controller.signal.aborted) setLoading(false)
       }
