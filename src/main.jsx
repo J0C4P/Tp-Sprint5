@@ -4,13 +4,16 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import { VideojuegosProvider } from './context/VideojuegosContext'
+import { ToastProvider } from './context/ToastContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <VideojuegosProvider>
-        <App />
-      </VideojuegosProvider>
+      <ToastProvider>
+        <VideojuegosProvider>
+          <App />
+        </VideojuegosProvider>
+      </ToastProvider>
     </BrowserRouter>
   </StrictMode>,
 )

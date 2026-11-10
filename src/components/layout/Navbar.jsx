@@ -8,6 +8,7 @@ function Navbar() {
         <NavLink to="/videojuegos" end>
           Lista
         </NavLink>
+        <NavLink to="/videojuegos/crear">Nuevo</NavLink>
       </nav>
     </header>
   )

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { getAll } from '../api/videojuegosApi'
+import { getAll, create } from '../api/videojuegosApi'
 
 export function useVideojuegos() {
   const [videojuegos, setVideojuegos] = useState([])
@@ -37,5 +37,12 @@ export function useVideojuegos() {
     setIntento((n) => n + 1)
   }
 
-  return { videojuegos, loading, error, reintentar }
+  // Propaga el error: la página decide qué mostrar y si navega.
+  const crear = async (data) => {
+    const nuevo = await create(data)
+    setVideojuegos((prev) => [...prev, nuevo])
+    return nuevo
+  }
+
+  return { videojuegos, loading, error, reintentar, crear }
 }
