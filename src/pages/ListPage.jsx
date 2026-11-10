@@ -14,7 +14,11 @@ function ListPage({ busqueda, orden, direccion }) {
   if (error) return <ErrorMessage mensaje={error} onReintentar={reintentar} />
 
   if (videojuegos.length === 0) {
-    return <p>Todavía no hay videojuegos cargados.</p>
+    return (
+      <p className="panel p-8 text-center font-headline font-bold">
+        Todavía no hay videojuegos cargados.
+      </p>
+    )
   }
 
   const filtrados = ordenarVideojuegos(
@@ -26,12 +30,26 @@ function ListPage({ busqueda, orden, direccion }) {
   )
 
   return (
-    <section>
-      <h1>Videojuegos</h1>
-      {filtrados.length === 0 && <p>No hay resultados para "{busqueda}".</p>}
-      {filtrados.map((v) => (
-        <VideojuegoCard key={v.id} videojuego={v} onBorrar={pedirBorrado} />
-      ))}
+    <section className="flex flex-col gap-6">
+      <div className="flex flex-wrap items-center gap-3 border-b-2 border-ink pb-4">
+        <h1 className="page-title">Videojuegos</h1>
+        <span className="badge bg-accent shadow-neo-sm">
+          {filtrados.length} {filtrados.length === 1 ? 'título' : 'títulos'}
+        </span>
+      </div>
+
+      {filtrados.length === 0 && (
+        <p className="panel p-8 text-center font-headline font-bold">
+          No hay resultados para "{busqueda}".
+        </p>
+      )}
+
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-6">
+        {filtrados.map((v) => (
+          <VideojuegoCard key={v.id} videojuego={v} onBorrar={pedirBorrado} />
+        ))}
+      </div>
+
       {aBorrar && (
         <ConfirmDialog
           titulo={`¿Borrar "${aBorrar.titulo}"?`}

@@ -1,1 +1,74 @@
 @import "tailwindcss";
+
+/* Tokens del diseño (Bauhaus neo-brutalista) */
+@theme {
+  --color-background: #f5f0e8;
+  --color-surface: #ffffff;
+  --color-surface-low: #f2ede5;
+  --color-surface-mid: #eee9e0;
+  --color-surface-high: #e2ddd4;
+  --color-ink: #1a1a1a;
+  --color-muted: #4a4a4a;
+  --color-accent: #ffcc00;
+  --color-danger: #e63b2e;
+  --color-danger-dark: #cc0000;
+  --color-danger-soft: #ffdad6;
+  --color-link: #0055ff;
+
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --shadow-neo-sm: 2px 2px 0 #1a1a1a;
+  --shadow-neo: 4px 4px 0 #1a1a1a;
+  --shadow-neo-lg: 6px 6px 0 #1a1a1a;
+
+  --radius-xs: 0.125rem;
+}
+
+@layer base {
+  body {
+    @apply bg-background font-body text-ink antialiased selection:bg-accent selection:text-ink;
+  }
+}
+
+/* Patrones que se repiten en toda la app */
+@layer components {
+  .btn {
+    @apply inline-flex h-10 cursor-pointer items-center justify-center gap-2 border-2 border-ink px-4 font-headline text-xs font-bold tracking-wider uppercase shadow-neo-sm transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-light {
+    @apply bg-surface text-ink hover:bg-accent;
+  }
+  .btn-accent {
+    @apply bg-accent text-ink;
+  }
+  .btn-danger {
+    @apply bg-danger text-white hover:bg-danger-dark;
+  }
+  .btn-link {
+    @apply bg-link text-white hover:brightness-90;
+  }
+
+  .field {
+    @apply h-11 w-full border-2 border-ink bg-surface px-3.5 font-body text-sm font-medium shadow-neo-sm placeholder:text-muted focus:border-link focus:outline-none aria-invalid:border-danger;
+  }
+  .label {
+    @apply font-headline text-xs font-bold tracking-wider uppercase;
+  }
+  .field-error {
+    @apply text-xs font-bold text-danger-dark;
+  }
+
+  .panel {
+    @apply border-2 border-ink bg-surface shadow-neo;
+  }
+  .badge {
+    @apply inline-flex items-center border-2 border-ink px-2 py-0.5 font-headline text-[11px] font-bold tracking-wider uppercase;
+  }
+  .back-link {
+    @apply inline-flex items-center gap-1.5 font-headline text-xs font-bold tracking-wider text-ink uppercase hover:text-danger;
+  }
+  .page-title {
+    @apply font-headline text-3xl font-black tracking-tight uppercase md:text-4xl;
+  }
+}

@@ -20,9 +20,11 @@ function CreatePage() {
   }
 
   return (
-    <section>
-      <Link to="/videojuegos">← Volver a la lista</Link>
-      <h1>Nuevo videojuego</h1>
+    <section className="mx-auto flex max-w-3xl flex-col gap-6">
+      <Link to="/videojuegos" className="back-link self-start">
+        <span aria-hidden="true">←</span> Volver a la lista
+      </Link>
+      <h1 className="page-title">Nuevo videojuego</h1>
       <VideojuegoForm onSubmit={onSubmit} textoBoton="Crear videojuego" />
     </section>
   )

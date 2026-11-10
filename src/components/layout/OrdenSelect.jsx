@@ -13,6 +13,7 @@ function OrdenSelect({ orden, setOrden, direccion, setDireccion }) {
         aria-label="Ordenar videojuegos por"
         value={orden}
         onChange={(e) => setOrden(e.target.value)}
+        className="field w-auto cursor-pointer font-headline text-xs font-bold uppercase"
       >
         {ORDENES.map((o) => (
           <option key={o.valor} value={o.valor}>
@@ -25,6 +26,7 @@ function OrdenSelect({ orden, setOrden, direccion, setDireccion }) {
         onClick={alternarDireccion}
         title={`Orden actual: ${descripcion}. Clic para invertir`}
         aria-label={`Invertir el orden (actual: ${descripcion})`}
+        className="btn btn-light h-11 w-11 px-0 text-base"
       >
         ⇅
       </button>

@@ -18,10 +18,12 @@ function EditPage() {
 
   if (noEncontrado) {
     return (
-      <section>
-        <h1>Videojuego no encontrado</h1>
+      <section className="panel mx-auto flex max-w-md flex-col items-start gap-4 p-8">
+        <h1 className="page-title">Videojuego no encontrado</h1>
         <p>No existe un videojuego con el id {id}.</p>
-        <Link to="/videojuegos">Volver a la lista</Link>
+        <Link to="/videojuegos" className="btn btn-accent">
+          Volver a la lista
+        </Link>
       </section>
     )
   }
@@ -40,9 +42,11 @@ function EditPage() {
   }
 
   return (
-    <section>
-      <Link to={`/videojuegos/${id}`}>← Volver al detalle</Link>
-      <h1>Editar {videojuego.titulo}</h1>
+    <section className="mx-auto flex max-w-3xl flex-col gap-6">
+      <Link to={`/videojuegos/${id}`} className="back-link self-start">
+        <span aria-hidden="true">←</span> Volver al detalle
+      </Link>
+      <h1 className="page-title">Editar {videojuego.titulo}</h1>
       <VideojuegoForm
         valoresIniciales={videojuego}
         onSubmit={onSubmit}

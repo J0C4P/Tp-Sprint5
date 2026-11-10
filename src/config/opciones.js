@@ -23,6 +23,15 @@ export const GENEROS = [
 
 export const PLATAFORMAS = ['PC', 'PlayStation', 'Xbox', 'Switch', 'Móvil']
 
+// Color de la etiqueta de plataforma (clases completas para que Tailwind las detecte)
+export const ESTILO_PLATAFORMA = {
+  PC: 'bg-link text-white',
+  PlayStation: 'bg-link text-white',
+  Xbox: 'bg-ink text-white',
+  Switch: 'bg-danger text-white',
+  Móvil: 'bg-accent text-ink',
+}
+
 export const DESARROLLADORES = [
   'Nintendo',
   'Rockstar',
