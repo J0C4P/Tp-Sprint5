@@ -3,6 +3,7 @@ import Navbar from './components/layout/Navbar'
 import ListPage from './pages/ListPage'
 import DetailPage from './pages/DetailPage'
 import CreatePage from './pages/CreatePage'
+import EditPage from './pages/EditPage'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/videojuegos" element={<ListPage />} />
           <Route path="/videojuegos/crear" element={<CreatePage />} />
           <Route path="/videojuegos/:id" element={<DetailPage />} />
+          <Route path="/videojuegos/:id/editar" element={<EditPage />} />
         </Routes>
       </main>
     </>

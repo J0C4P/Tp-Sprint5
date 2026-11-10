@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { GENEROS, PLATAFORMAS, DESARROLLADORES } from '../config/opciones'
 
@@ -25,8 +26,15 @@ function VideojuegoForm({
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm({ defaultValues: valoresIniciales })
+
+  // defaultValues solo se lee en el primer render: si los valores
+  // iniciales cambian después (edición), hay que volcarlos con reset().
+  useEffect(() => {
+    reset(valoresIniciales)
+  }, [valoresIniciales, reset])
 
   const esMultijugador = useWatch({ control, name: 'multiplayer' })
 
