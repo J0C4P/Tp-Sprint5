@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SIN_IMAGEN } from '../utils/imagenes'
 
-function VideojuegoCard({ videojuego }) {
+function VideojuegoCard({ videojuego, onBorrar }) {
   const { id, titulo, genero, plataforma, anioSalida, puntuacion, imagen } =
     videojuego
   const [imagenRota, setImagenRota] = useState(false)
@@ -21,6 +21,9 @@ function VideojuegoCard({ videojuego }) {
       </p>
       <p>Puntuación: {puntuacion}</p>
       <Link to={`/videojuegos/${id}`}>Ver detalle</Link>
+      <button type="button" onClick={() => onBorrar(videojuego)}>
+        Borrar
+      </button>
     </article>
   )
 }

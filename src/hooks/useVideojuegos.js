@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { getAll, create, update } from '../api/videojuegosApi'
+import { getAll, create, update, remove } from '../api/videojuegosApi'
 
 export function useVideojuegos() {
   const [videojuegos, setVideojuegos] = useState([])
@@ -52,5 +52,10 @@ export function useVideojuegos() {
     return actualizado
   }
 
-  return { videojuegos, loading, error, reintentar, crear, editar }
+  const borrar = async (id) => {
+    await remove(id)
+    setVideojuegos((prev) => prev.filter((v) => v.id !== id))
+  }
+
+  return { videojuegos, loading, error, reintentar, crear, editar, borrar }
 }

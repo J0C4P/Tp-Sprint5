@@ -1,15 +1,21 @@
 import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useVideojuego } from '../hooks/useVideojuego'
+import { useBorrar } from '../hooks/useBorrar'
 import Spinner from '../components/ui/Spinner'
 import ErrorMessage from '../components/ui/ErrorMessage'
+import ConfirmDialog from '../components/ui/ConfirmDialog'
 import { SIN_IMAGEN } from '../utils/imagenes'
 
 function DetailPage() {
   const { id } = useParams()
+  const navigate = useNavigate()
   const { videojuego, loading, error, noEncontrado, reintentar } =
     useVideojuego(id)
   const [imagenRota, setImagenRota] = useState(false)
+  const { aBorrar, pedirBorrado, cancelar, confirmar, borrando } = useBorrar(
+    () => navigate('/videojuegos')
+  )
 
   if (loading) return <Spinner texto="Cargando videojuego..." />
 
@@ -63,6 +69,18 @@ function DetailPage() {
       </ul>
       <p>{descripcion}</p>
       <Link to={`/videojuegos/${id}/editar`}>Editar</Link>
+      <button type="button" onClick={() => pedirBorrado(videojuego)}>
+        Borrar
+      </button>
+      {aBorrar && (
+        <ConfirmDialog
+          titulo={`¿Borrar "${aBorrar.titulo}"?`}
+          mensaje="Esta acción no se puede deshacer."
+          onConfirmar={confirmar}
+          onCancelar={cancelar}
+          cargando={borrando}
+        />
+      )}
     </article>
   )
 }
