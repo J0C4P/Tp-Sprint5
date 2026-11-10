@@ -2,7 +2,7 @@ import Modal from './Modal'
 
 function ConfirmDialog({ titulo, mensaje, onConfirmar, onCancelar, cargando }) {
   return (
-    <Modal titulo={titulo} onCerrar={onCancelar}>
+    <Modal titulo={titulo} onCerrar={cargando ? () => {} : onCancelar}>
       <p>{mensaje}</p>
       <button type="button" onClick={onCancelar} disabled={cargando}>
         Cancelar
